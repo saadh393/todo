@@ -18,7 +18,7 @@ function loadAllEventListeners() {
     taskList.addEventListener('click', removeTask);
 
     // Filter task
-    filter.addEventListener('keyup', filterTasks);
+    filter.addEventListener('keyup', filterTasks);   
 
     // Clear task
     clearBtn.addEventListener('click', clearTasks);
@@ -162,18 +162,20 @@ function clearTasksFormLocalStorage() {
 // Filter tasks
 function filterTasks(e) {
     const text = e.target.value.toLowerCase();
+    console.log(text)
     const filterItems = document.querySelectorAll('.list-group-item');
 
     filterItems.forEach(function(task) {
         const item = task.firstChild.textContent;
         if (item.toLowerCase().indexOf(text) != -1) {
-            task.style.display = 'block';
+            // task.style.display = 'block';
+            task.style.setProperty('display', 'flex', 'important');
+            
         } else {
-            task.style.display = 'none';
+            // task.style.display = 'none';
+            task.style.setProperty('display', 'none', 'important');            
         }
     });
 
-    console.log(document.querySelectorAll('.list-group-item'));
+    // console.log(document.querySelectorAll('.list-group-item'));
 }
-
-// at first ami kichu task add korlam then ami chacchi sei task theke akta task search kora... sei kaj ta hobe filter form theke... to problem ta (d-flex justify-content-between) ei class theke asteche... karon ami jodi (list-group-item) class ti rekhe (d-flex justify-content-between) ei class ta kete dei tahole amr filter ta kaj kore... kintu (d-flex justify-content-between) class ta add thaka kalin somoy filter form kaj kore na... jehetu ami keyup event listeners use kore tokhon typing obosthay search/filter hote thake. kintu kono vabei filter form kaj korteche na... ami j list item create korechi & tar moddhe j bootstrap er class add korechi se khane theke just (d-flex justify-content-between) class tuku kete diye filter a apnr add kora task search korun dekhben kaj koreee... r (d-flex justify-content-between) eita add kore search korun kono response korbe na...
